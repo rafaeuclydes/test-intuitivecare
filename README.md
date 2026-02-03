@@ -1,6 +1,6 @@
 ﻿# Test Intuitive Care
 
-Instruções:
+## Instruções:
  O desafio contém 3 arquivos chamados...
  - Primeiro rodar o extract-data.py e depois o agregation-data.py.
      - Para rodar os scripts:
@@ -49,6 +49,7 @@ Trade-off técnico:
 
 Trade-off técnico: 
 - Para ordenação, primeiro decidi fazer a agregação pois ela reduz o volume de dados diminuindo o custo computacional.
+
 
 
 
