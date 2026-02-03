@@ -2,11 +2,14 @@
 
 Instruções:
  O desafio contém 3 arquivos chamados...
- - Primeiro rodar o x e depois o y
+ - Primeiro rodar o extract-data.py e depois o agregation-data.py.
      - Para rodar os scripts:
-         - VS Code - No terminar acesse a pastar onde os scripts estão armazenados a rode com o comando 'python .\x.py'
+         - VS Code - No terminar acesse a pastar onde os scripts estão armazenados a rode com o comando 'python .\nomedoaqruivo.py'
          - No PyCharm ou outros rode os scripts com os botão 'run'.
- - Os scripts geram os arquivos x e y
+      
+           Obs: Caso rode em linux pode ser que dependendo da distro você precise rodar com a extenção venv.
+           
+ - O script extract-data.py gera os arquivos consolidado_despesas.zip e .csv e o agregation-data.py gera o despesas_agregadas.csv e o Teste_RafaelEuclydes.zip.
 
    
 
@@ -18,7 +21,7 @@ R - Processar incrementalmente é a opção mais adequada para o carregamento do
 Análise crítica: Durante a consolidação, você encontrará:
 
 - CNPJs duplicados com razões sociais diferentes
-  R - Aqui considerei as razão sociais mais prevalentes, pois pode ter acontecido dessas agencias terem trocado a azão social, e como o CNPJ não muda considerar os nomes mais prevalentes pareceu fazer masi sentido.
+  R - Aqui considerei as razão sociais mais prevalentes, pois pode ter acontecido dessas agencias terem trocado a razão social, e como o CNPJ não muda considerar os nomes mais prevalentes pareceu fazer masi sentido.
 - Valores zerados ou negativos
 - Trimestres com formatos de data inconsistentes
   R - Fazer um "coerce" dessas datas, forçando a terem os mesmo formato, pois é importante ter um padrão para outros testes.
@@ -42,4 +45,5 @@ Trade-off técnico:
 
 Trade-off técnico: 
 - Para ordenação, primeiro decidi fazer a agregação pois ela reduz o volume de dados diminuindo o custo computacional.
+
 
