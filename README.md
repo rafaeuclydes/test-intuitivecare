@@ -1,5 +1,15 @@
 ﻿# Test Intuitive Care
 
+Instruções:
+ O desafio contém 3 arquivos chamados...
+ - Primeiro rodar o x e depois o y
+     - Para rodar os scripts:
+         - VS Code - No terminar acesse a pastar onde os scripts estão armazenados a rode com o comando 'python .\x.py'
+         - No PyCharm ou outros rode os scripts com os botão 'run'.
+ - Os scripts geram os arquivos x e y
+
+   
+
 ## 1. TESTE DE INTEGRAÇÃO COM API PÚBLICA
 
 Trade-off técnico:
@@ -18,18 +28,18 @@ Nesta parte do desafio observei que as tabelas dos 3 trimestres não tinha CNPJ 
 ## 2. TESTE DE TRANSFORMAÇÃO E VALIDAÇÃO DE DADOS
 
 Trade-off técnico:
-R - Para CNPJs inválidos, mantive os CNPJ mas marquei como inválido, porque a exclusão desses dados poderia causar alguma perda de dados relevantes.
+R - Para CNPJs inválidos, mantive os CNPJ mas marquei como inválido, porque a exclusão desses dados poderia causar alguma perda de dados relevantes, que podem só estar na coluna errada.
 
 Análise crítica: Você encontrará CNPJs no arquivo consolidado que não existem no
 cadastro (ou vice-versa). Decida como tratar:
-
 - Registros sem match no cadastro
   R - Os registros sem match foram mantidos para fazer a agregação, e posteriormente excluídos, pois esses dados só inflam e não agregam no dados visto que não possuiem CNPJ e Razão social. Alem disso, em pesquisas esses ANS podem estar inativos e os dados se reverem a operadoras ativas.
 - CNPJs que aparecem múltiplas vezes no cadastro com dados diferentes
   R - Considerei as modalidade e UF como um conjunto com o CNPJ
 
 Trade-off técnico: 
-- Para o join considerei umsistema hibrido pois na tabeka do primeiro desafio não tinha o CNPJ para usar como ID, então usei o ANS como identificador intermediário e no final o CNPJ ficou como ID único das operadores
+- Para o join considerei umsistema hibrido pois na tabela do primeiro desafio não tinha o CNPJ para usar como ID, então usei o ANS como identificador intermediário e no final o CNPJ ficou como ID único das operadores.
 
 Trade-off técnico: 
 - Para ordenação, primeiro decidi fazer a agregação pois ela reduz o volume de dados diminuindo o custo computacional.
+
