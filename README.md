@@ -4,11 +4,15 @@ Instruções:
  O desafio contém 3 arquivos chamados...
  - Primeiro rodar o extract-data.py e depois o agregation-data.py.
      - Para rodar os scripts:
-         - VS Code - No terminar acesse a pastar onde os scripts estão armazenados a rode com o comando 'python .\nomedoaqruivo.py'
+         - VS Code - No terminar acesse a pastar onde os scripts estão armazenados a rode com o comando: python .\nomedoaqruivo.py
          - No PyCharm ou outros rode os scripts com os botão 'run'.
       
-           Obs: Caso rode em linux pode ser que dependendo da distro você precise rodar com a extenção venv.
-           
+           Obs: Caso rode em linux pode ser que dependendo da distro como Debian você precise rodar com o ambiente virtual venv. Então rode:
+              sudo apt install python3-venv (caso não tenha o venv instalado)
+              python3 -m venv venv
+              source venv/bin/activate
+              python+Versão (ex: python3) nomedoarquivo.py
+                    
  - O script extract-data.py gera os arquivos consolidado_despesas.zip e .csv e o agregation-data.py gera o despesas_agregadas.csv e o Teste_RafaelEuclydes.zip.
 
    
@@ -45,5 +49,6 @@ Trade-off técnico:
 
 Trade-off técnico: 
 - Para ordenação, primeiro decidi fazer a agregação pois ela reduz o volume de dados diminuindo o custo computacional.
+
 
 
