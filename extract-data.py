@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 
 BASE_URL = "https://dadosabertos.ans.gov.br/FTP/PDA/demonstracoes_contabeis/"
 CSV_FINAL = "consolidado_despesas.csv"
-ZIP_FINAL = "consolidado_despesas.zip" # Nome do arquivo zip final
+ZIP_FINAL = "consolidado_despesas.zip" 
 
 def get_links():
     html = requests.get(BASE_URL).text
