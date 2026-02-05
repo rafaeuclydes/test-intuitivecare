@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import zipfile  # Importado para gerar o arquivo final
 
 def validar_cnpj(cnpj):
     """Validação técnica de CNPJ para o requisito 2.1"""
@@ -18,9 +19,13 @@ def validar_cnpj(cnpj):
 def executar_desafio_2():
     print("--- INICIANDO DESAFIO 2 ---")
     
+    # Configuração de nomes de arquivos
+    NOME_CSV = "despesas_agregadas.csv"
+    NOME_ZIP = "Teste_Rafael_Euclydes.zip"
+    
     # 1. Carregar Consolidado do Desafio 1
     df_despesas = pd.read_csv("consolidado_despesas.csv", sep=";")
-    # Padronização do Registro ANS para o Join (pois na tabela do desafio 1 não tinha CNPJ)
+    # Padronização do Registro ANS para o Join
     df_despesas['REG_ANS'] = df_despesas['REG_ANS'].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
 
     # 2. Baixar Cadastro da ANS
@@ -62,10 +67,17 @@ def executar_desafio_2():
 
     agregado = agregado.sort_values(by='Total_Despesas', ascending=False)
 
-    agregado.to_csv("resultado_final_agregado.csv", index=False, sep=";", encoding="utf-8-sig")
+    # Gera o CSV com o novo nome solicitado
+    agregado.to_csv(NOME_CSV, index=False, sep=";", encoding="utf-8-sig")
+    
+    # Gera o arquivo ZIP contendo o CSV
+    with zipfile.ZipFile(NOME_ZIP, 'w', zipfile.ZIP_DEFLATED) as zf:
+        zf.write(NOME_CSV)
     
     print("--- SUCESSO! ---")
-    print(f"O arquivo contém {len(agregado)} operadoras com as colunas CNPJ e RegistroANS incluídas.")
+    print(f"Arquivo CSV: {NOME_CSV}")
+    print(f"Arquivo ZIP: {NOME_ZIP}")
+    print(f"O arquivo contém {len(agregado)} operadoras.")
 
 if __name__ == "__main__":
     executar_desafio_2()
