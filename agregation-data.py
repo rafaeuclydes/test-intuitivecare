@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import zipfile  # Importado para gerar o arquivo final
+import zipfile  
 
 def validar_cnpj(cnpj):
     """Validação técnica de CNPJ para o requisito 2.1"""
@@ -19,16 +19,12 @@ def validar_cnpj(cnpj):
 def executar_desafio_2():
     print("--- INICIANDO DESAFIO 2 ---")
     
-    # Configuração de nomes de arquivos
     NOME_CSV = "despesas_agregadas.csv"
     NOME_ZIP = "Teste_Rafael_Euclydes.zip"
     
-    # 1. Carregar Consolidado do Desafio 1
     df_despesas = pd.read_csv("consolidado_despesas.csv", sep=";")
-    # Padronização do Registro ANS para o Join
     df_despesas['REG_ANS'] = df_despesas['REG_ANS'].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
 
-    # 2. Baixar Cadastro da ANS
     URL_CAD = "https://dadosabertos.ans.gov.br/FTP/PDA/operadoras_de_plano_de_saude_ativas/Relatorio_cadop.csv"
     print("Lendo cadastro da ANS...")
     df_cadastral = pd.read_csv(URL_CAD, sep=";", encoding="latin1", low_memory=False)
@@ -37,7 +33,6 @@ def executar_desafio_2():
     col_reg_cad = 'REGISTRO_OPERADORA' if 'REGISTRO_OPERADORA' in df_cadastral.columns else 'REGISTRO_ANS'
     df_cadastral[col_reg_cad] = df_cadastral[col_reg_cad].astype(str).str.replace(r'\.0$', '', regex=True).str.strip()
 
-    # 3. Join (Vínculo pelo Registro ANS)
     df_final = pd.merge(
         df_despesas, 
         df_cadastral[[col_reg_cad, 'CNPJ', 'RAZAO_SOCIAL', 'MODALIDADE', 'UF']], 
@@ -46,7 +41,6 @@ def executar_desafio_2():
         how='left'
     )
 
-    # 4. Tratamento e Validação
     df_final['CNPJ_VALIDO'] = df_final['CNPJ'].apply(lambda x: validar_cnpj(x) if pd.notna(x) else False)
     
     def converter_valor(v):
@@ -67,10 +61,8 @@ def executar_desafio_2():
 
     agregado = agregado.sort_values(by='Total_Despesas', ascending=False)
 
-    # Gera o CSV com o novo nome solicitado
     agregado.to_csv(NOME_CSV, index=False, sep=";", encoding="utf-8-sig")
     
-    # Gera o arquivo ZIP contendo o CSV
     with zipfile.ZipFile(NOME_ZIP, 'w', zipfile.ZIP_DEFLATED) as zf:
         zf.write(NOME_CSV)
     
