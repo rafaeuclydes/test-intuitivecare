@@ -55,17 +55,17 @@ Análise crítica: Você encontrará CNPJs no arquivo consolidado que não exist
   R - Considerei as modalidade e UF como um conjunto com o CNPJ
 
 Trade-off técnico: 
-- Para o join considerei umsistema hibrido pois na tabela do primeiro desafio não tinha o CNPJ para usar como ID, então usei o ANS como identificador intermediário e no final o CNPJ ficou como ID único das operadores.
+R - Para o join considerei umsistema hibrido pois na tabela do primeiro desafio não tinha o CNPJ para usar como ID, então usei o ANS como identificador intermediário e no final o CNPJ ficou como ID único das operadores.
 
 Trade-off técnico: 
-- Para ordenação, primeiro decidi fazer a agregação pois ela reduz o volume de dados diminuindo o custo computacional.
+R - Para ordenação, primeiro decidi fazer a agregação pois ela reduz o volume de dados diminuindo o custo computacional.
 
 ## 3. TESTE DE BANCO DE DADOS E ANÁLISE 
 
 Trade-off técnico:
 R - Para a normalização utilizei a opção B, pela estrutura dos dados e o alto volume de dados a ANS, utilizando tabelas normalizadas separadas, reduz o custo computacional e aumenta a escalabilidade.
 
-Trade-off técnico::
+Trade-off técnico:
 R - Nos valores monetários optei por INTEGER por ser mais preciso, e nas datas optei por DATE pois é  formato mais coerento para datas.
 
 Análise crítica:
@@ -73,3 +73,4 @@ Análise crítica:
   R - Descartados por CPNJ são ID únicos.
 - Strings em campos numéricos
   R - Tentei fazer uma conversão, assim evita NaN.
+
