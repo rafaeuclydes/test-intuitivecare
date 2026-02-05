@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 BASE_URL = "https://dadosabertos.ans.gov.br/FTP/PDA/demonstracoes_contabeis/"
 CSV_FINAL = "consolidado_despesas.csv"
+ZIP_FINAL = "consolidado_despesas.zip" # Nome do arquivo zip final
 
 def get_links():
     html = requests.get(BASE_URL).text
@@ -45,6 +46,11 @@ def executar_desafio_1():
     df_total = pd.concat(lista_dfs, ignore_index=True)
     df_total.to_csv(CSV_FINAL, index=False, sep=";", encoding="utf-8-sig")
     print(f" CSV Consolidado gerado com as colunas: {list(df_total.columns)}")
+
+    with zipfile.ZipFile(ZIP_FINAL, 'w', zipfile.ZIP_DEFLATED) as zf:
+        zf.write(CSV_FINAL)
+    print(f" Arquivo ZIP final gerado: {ZIP_FINAL}")
+    # -----------------------------------------------
 
 if __name__ == "__main__":
     executar_desafio_1()
